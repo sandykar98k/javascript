@@ -63,3 +63,49 @@ circle.draw();
 // What you seen above is called OBJECT-ORIENTED-PROGRAMMING (OOPS).
 // OOPS -  Object oriented programming is basically a style of programming where we see a program as a collection of object that talk to each other to perform some functionality.
 // In circle object we have some property and methods (In object oriented terms functions defines inside an object called method).
+
+// There is Tiny problem in object literal syntax, imagine we wanna create two circle object how we gonna do this: I am gonna copy circle object two times and call second circle 'circle2'. Now the problem we have here is that we have duplicated the implementation of draw() method right now it has simple method only one line of code but what if we have 100 lines of code here we do not wanna repeat all these line because if we have a bug in this method we have to fix that in multiple places and also taking to account circle object has only one method right what if we have 10 other methods here we don't wanna duplicate all that logic.
+
+// const circle = {
+//   radius: 1,
+//   location: {
+//     x: 5,
+//     y: 5
+//   },
+//   isVisible: true,
+//   draw: function() {
+//     console.log('Draw');
+//   }
+// };
+
+// const circle2 = {
+//   radius: 1,
+//   location: {
+//     x: 5,
+//     y: 5
+//   },
+//   isVisible: true,
+//   draw: function() {
+//     console.log('Draw');
+//   }
+// };
+
+// NOTE: So if our object has logic we need different ways to create objects that's when we use Factory functions and Constructor Functions, so let's talk about factory functions and contructor function
+
+/* FACTORY FUNCTION (Just like factory produce products, Factory Function produce objects) */
+function createCircle(radius) {
+  return {
+    radius,
+    draw() {
+      console.log('Draw');
+    }
+  };
+}
+
+// Here you have noticed the draw method syntax this is the new way to declare methods inside an object inside an object we don't need to put function in front of function, and if the key value pair are same can also write just the name of key.
+// So Factory functions are awesome all the logic are at one place and they return different-different objects on the basis of value
+
+const circle1 = createCircle(10);
+console.log(circle1);
+const circle2 = createCircle(20);
+console.log(circle2);
