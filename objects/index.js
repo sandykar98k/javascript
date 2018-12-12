@@ -218,3 +218,28 @@ console.log(car3);
 // In low level languages like c, c++ when we create an object we need to allocate memoey and when we are done we need to deallocate memory, but in javascript we don't have to do this.
 
 // JavaScript Engine has a garbage collector, The memory allocation and deallocation happens behind the scene and you have no control over it.
+
+/* --------------------------------------------------------- */
+/* Math Object */
+/* --------------------------------------------------------- */
+console.log(Math.PI);
+console.log(Math.abs(-10));
+console.log(Math.round(Math.random() * 10));
+
+/* --------------------------------------------------------- */
+/* String Object */
+/* --------------------------------------------------------- */
+const message = 'hi'; // String Primitive (String Literal)
+
+// Now see on typing.. 'message.' we got suggestion properties and method wait but we have learn that string is primitive type and it don't have properties and method only object have.
+// This is becuase in javascript we have two type of string
+// 1. String Primitive
+// 2. String Object
+
+const anotherString = new String('hiii');
+console.log(typeof message); // "string"
+console.log(typeof anotherString); // object
+
+// So, Javascript behind the scene use String() to create string and we can confirm it my using 'message.constructor'
+
+// TODO: Check string methods from mdn docs
