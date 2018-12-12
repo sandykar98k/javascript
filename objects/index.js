@@ -243,3 +243,13 @@ console.log(typeof anotherString); // object
 // So, Javascript behind the scene use String() to create string and we can confirm it my using 'message.constructor'
 
 // TODO: Check string methods from mdn docs
+
+/* --------------------------------------------------------- */
+/* Template Literals */
+/* --------------------------------------------------------- */
+
+// Template literals are useful when we want to break line traditionally we uses '\n' charter
+
+const tempStr = `This is message
+have a 'nice' day`;
+console.log(tempStr);
