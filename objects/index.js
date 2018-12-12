@@ -109,3 +109,112 @@ const circle1 = createCircle(10);
 console.log(circle1);
 const circle2 = createCircle(20);
 console.log(circle2);
+
+// CONTRUCTOR FUNCTIONS
+
+function Circle(radius) {
+  this.radius = radius;
+  this.draw = function() {
+    console.log('DRAW');
+  };
+}
+
+const circle3 = new Circle(6);
+circle3.draw();
+
+// Now watch the Circle() constructor carefully there is no return statement over there, now how we got an object inside a circle3 this is happening becuase of new keyword.
+// Behind the scene new keyword doing three things:
+// 1. Its create an empty object
+// 2. Set a reference of an empty object to this keyword.
+// 3. Finally retuen the object.
+
+// NOTE: Every object in javascript has a property called constructor and that reference the function that was used to contruct or create that objects.
+// On the above we have circle1 object and circle3 object let's look at the contructor property of them
+console.log(circle1.constructor); // Note in this case we have function Object() which is built in constuctor in javascript and whenever we use object literal syntax to create object javascript calls an Object() constructor behind the scene to create an object.
+// In javascipt we also have another built in contsuctor like String(), Boolean(), Number().
+console.log(circle3.constructor);
+
+// NOTE: Functions are objects in JavaScript, Above we define a Circle() constructor function is an object don't believe me take a look:
+
+console.log(Circle.length); // length return the number of argument
+console.log(Circle.name); // Name of function
+
+// Earlier i have told you every object in javascript has a property called constructor that reference the function that was used to contruct or create that object. Let's see who creates the Circle()
+console.log(Circle.constructor); // See Function() contructor creates this object
+
+/* --------------------------------------------------------- */
+/* VALUE TYPES (Primitive) VS REFERENCE TYPE (Object Types) */
+/* --------------------------------------------------------- */
+let x = 10;
+let y = x;
+x = 20;
+console.log(x);
+console.log(y);
+
+const a = {
+  value: 10
+};
+const b = a;
+
+a.value = 20;
+console.log(a);
+console.log(b);
+
+/* --------------------------------------------------------- */
+/* Enumerating the property of an object */
+/* --------------------------------------------------------- */
+for (let key in circle) {
+  console.log(key, circle[key]);
+}
+
+// for (let key of circle) {
+//   console.log(key); // circle is not iterable
+// }
+
+// We can run for-of loop only on iterable (like array)
+// In JavaScript we have a method Object.Key() it takes an object and simply return an array of key
+for (let key of Object.keys(circle)) {
+  console.log(key);
+}
+
+//  We also have similar method Object.entries() which simply return an array of key and value pair
+for (let entry of Object.entries(circle)) {
+  console.log(entry);
+}
+
+// Sometime we want see that object has some property or not
+if ('radius' in circle) {
+  console.log('yesss');
+}
+
+/* --------------------------------------------------------- */
+/* Cloning an object */
+/* --------------------------------------------------------- */
+const car = {
+  brand: 'BMW',
+  engine: '5000CC'
+};
+
+// Now if we want clone car object to another we can use for in loop like this
+const another = {};
+for (let key in car) {
+  another[key] = car[key];
+}
+
+console.log(another);
+
+// Above method is not the only way to clone object we have spread operator in ES6.
+const car2 = { color: 'yellow', ...car };
+console.log(car2);
+
+// We can also use Object.assign()
+const car3 = Object.assign({}, car); // Note object assign does not neccessary to have empty obj it can be any kind of object
+console.log(car3);
+
+/* --------------------------------------------------------- */
+/* Garbage collection */
+/* --------------------------------------------------------- */
+
+// In low level languages like c, c++ when we create an object we need to allocate memoey and when we are done we need to deallocate memory, but in javascript we don't have to do this.
+
+// JavaScript Engine has a garbage collector, The memory allocation and deallocation happens behind the scene and you have no control over it.
