@@ -116,3 +116,116 @@ console.log(ex3);
 /* ----------------------------------------------------- */
 /* ITERATE AN ARRAY */
 /* ----------------------------------------------------- */
+const oddNumbers = [1, 3, 5, 7, 9];
+
+// We can iterate an array via (for-of loop)
+for (let number of oddNumbers) {
+  console.log(number);
+}
+
+// We can also iterate an array via forEach loop
+oddNumbers.forEach((number, index) => console.log(number, index));
+
+// NOTE: there is no bad or good but we have one advantage with forEach is that it can takes one more parameter that is index
+
+/* ----------------------------------------------------- */
+/* JOINING AN ARRAY */
+/* ----------------------------------------------------- */
+const nums = [1, 2, 3, 4, 5];
+const joined = nums.join(','); // Join method return a string on the basis of seperator
+console.log(joined);
+
+const message = 'Java JavaScript HTML CSS';
+const spiltedMessage = message.split(' '); // split() returns an array on basis on separator.
+console.log(spiltedMessage);
+
+console.log(spiltedMessage.join('-'));
+
+/* ----------------------------------------------------- */
+/* SORTING AN ARRAY */
+/* ----------------------------------------------------- */
+
+const randomNumbers = [4, 6, 9, 1, 5];
+randomNumbers.sort();
+console.log(randomNumbers);
+
+randomNumbers.reverse();
+console.log(randomNumbers);
+
+const randomCourses = [
+  { id: 1, name: 'Node' },
+  { id: 2, name: 'HTML' },
+  { id: 3, name: 'CSS' }
+];
+randomCourses.sort(); // By default sort method doesnot work on array of object but sort method takes optionally an function as a argument for comparison.
+console.log(randomCourses);
+
+// TODO: Always remember whenever comparing two string using ascii remove case sensitivity.
+randomCourses.sort(function(a, b) {
+  // a < b => -1
+  // a > b => 1
+  // a === b => 0
+
+  const nameA = a.name.toUpperCase();
+  const nameB = a.name.toUpperCase();
+
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
+console.log(randomCourses);
+
+/* ----------------------------------------------------- */
+/* TESTING THE ELEMENT OF AN ARRAY (every() and some()) */
+/* ----------------------------------------------------- */
+
+// We have two new functions in javascript every() and some() let's check them out.
+const numArr = [1, 2, 3, -1];
+// every() methods run on every methods if the condition matches and return true otherwise false.
+const allPositive = numArr.every(function(value) {
+  return value >= 0;
+});
+console.log(allPositive);
+
+const atleastOnePositive = numArr.some(function(value) {
+  return value >= 0;
+});
+console.log(atleastOnePositive);
+
+/* ----------------------------------------------------- */
+/* FILTERING AN ARRAY BASED ON CONDITION */
+/* ----------------------------------------------------- */
+const filteredArray = numArr.filter(function(number) {
+  return number >= 0;
+});
+
+console.log(filteredArray);
+
+/* ----------------------------------------------------- */
+/* MAPPING AN ARRAY  */
+/* ----------------------------------------------------- */
+// map() is used to map array element into something else for example lets map an array to objects.
+const mapedArray = numArr.map(function(number) {
+  return { value: number };
+});
+
+console.log(mapedArray);
+
+// NOTE: both map and filter return a new array and also chainable.
+
+/* ----------------------------------------------------- */
+/* REDUCING AN ARRAY  */
+/* ----------------------------------------------------- */
+// reduce() converts an array into single value
+const cartValue = [100, 200, 500, 400];
+
+let sum = 0;
+for (let n of cartValue) {
+  sum = sum + n;
+}
+console.log(sum);
+
+const sumOfCartValue = cartValue.reduce(function(accumulator, currentValue) {
+  return accumulator + currentValue;
+}, 0); // Second argument is the initializer for accumulator
+console.log(sumOfCartValue);
